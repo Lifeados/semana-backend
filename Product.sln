@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Product.Domain", "Product.Domain\Product.Domain.csproj", "{08B518F3-D126-4D25-8D4E-90183D2B52AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Product.Data", "Product.Data\Product.Data.csproj", "{78860463-426D-4BE2-A44F-A4F8DB8112E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Product.Api", "Product.Api\Product.Api.csproj", "{D9908A0C-18DE-4D31-B1ED-F1C4821AC67A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Env", "Env", "{4CC2B8A7-23BA-436E-81D7-A3CF0EA0C094}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{08B518F3-D126-4D25-8D4E-90183D2B52AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08B518F3-D126-4D25-8D4E-90183D2B52AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08B518F3-D126-4D25-8D4E-90183D2B52AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08B518F3-D126-4D25-8D4E-90183D2B52AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78860463-426D-4BE2-A44F-A4F8DB8112E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78860463-426D-4BE2-A44F-A4F8DB8112E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78860463-426D-4BE2-A44F-A4F8DB8112E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78860463-426D-4BE2-A44F-A4F8DB8112E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9908A0C-18DE-4D31-B1ED-F1C4821AC67A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9908A0C-18DE-4D31-B1ED-F1C4821AC67A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9908A0C-18DE-4D31-B1ED-F1C4821AC67A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9908A0C-18DE-4D31-B1ED-F1C4821AC67A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
