@@ -21,6 +21,12 @@ public class ProductController(IRepository repository, INotifierMessage notifier
     public async Task<IActionResult> GetById(int productId, [FromHeader] int establishmentId,
         CancellationToken cancellationToken)
     {
+        if (establishmentId == 0)
+        {
+            notifierMessage.Add("Informe o establishmentId");
+            return CustomResponse(HttpStatusCode.BadRequest, null);
+        }
+
         var product = await repository.QueryAsNoTracking<Domain.Models.ProductAggregate.Entities.Product>()
             .FirstOrDefaultAsync(x => x.Id == productId && x.EstablishmentId == establishmentId, cancellationToken);
 
@@ -33,6 +39,12 @@ public class ProductController(IRepository repository, INotifierMessage notifier
     public async Task<IActionResult> GetAll([FromQuery] int pageSize, [FromQuery] int skipCount,
         [FromHeader] int establishmentId, CancellationToken cancellationToken)
     {
+        if (establishmentId == 0)
+        {
+            notifierMessage.Add("Informe o establishmentId");
+            return CustomResponse(HttpStatusCode.BadRequest, null);
+        }
+
         var take = pageSize > 0 ? pageSize : 10;
         var skip = skipCount > 0 ? skipCount : 0;
 

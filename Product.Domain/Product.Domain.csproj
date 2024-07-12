@@ -26,4 +26,8 @@
       <PackageReference Include="MediatR" Version="12.3.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Models\EstablishmentAggregate\Validator\" />
+    </ItemGroup>
+
 </Project>

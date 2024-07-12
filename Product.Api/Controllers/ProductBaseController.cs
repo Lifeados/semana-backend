@@ -37,6 +37,7 @@ public abstract class ProductBaseController(INotifierMessage notifierMessage) : 
             HttpStatusCode.NoContent => NoContent(),
             HttpStatusCode.NotFound => NotFound(),
             HttpStatusCode.OK => Ok(resultSuccess),
+            HttpStatusCode.UnprocessableEntity => UnprocessableEntity(resultSuccess),
             _ => Ok(),
         };
     }
