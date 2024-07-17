@@ -1,10 +1,7 @@
-using Product.Api.Configurations.Elastic;
 using Product.Data;
 using Product.Domain.Communication;
-using Product.Domain.Models.ProductAggregate.Queries;
 using Product.Domain.Notifier;
 using Product.Domain.Repository;
-using Product.Domain.SeedWorks;
 using Product.Domain.Validator;
 
 namespace Product.Api.Configurations.App;
@@ -16,7 +13,6 @@ public static class RegisterAppServicesConfig
         #region Data
 
         services.AddScoped<IRepository, DataContext>();
-        services.AddScoped<IRepositoryCache, RedisContext>();
 
         #endregion
 
@@ -27,8 +23,7 @@ public static class RegisterAppServicesConfig
         #endregion
 
         #region Domain.Models
-
-        services.AddScoped<IProductQuery, ProductQuery>();
+        
 
         #endregion
 
@@ -41,12 +36,6 @@ public static class RegisterAppServicesConfig
         #region Domain.Validator
 
         services.AddScoped<IValidatorGeneric, ValidatorFactory>();
-
-        #endregion
-
-        #region Domain.Elastic
-
-        services.AddScoped<IElasticTransaction, ElasticTransaction>();
 
         #endregion
     }

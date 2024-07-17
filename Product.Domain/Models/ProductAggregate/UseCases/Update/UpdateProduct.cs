@@ -16,8 +16,11 @@ public class UpdateProduct(IRepository repository, INotifierMessage notifierMess
             .ValidateAsync(request, cancellationToken);
 
         if (!validatorResult.IsValid)
+        {
             notifierMessage.AddRange(validatorResult.Errors?.Select(e => e.ErrorMessage)
                 .ToList());
+            return null;
+        }
 
         var product = repository.Query<Entities.Product>()
             .FirstOrDefault(x => x.Id == request.Id);

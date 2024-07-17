@@ -16,8 +16,11 @@ public class CreateProduct(IRepository repository, INotifierMessage notifierMess
             .ValidateAsync(request, cancellationToken);
 
         if (!validatorResult.IsValid)
+        {
             notifierMessage.AddRange(validatorResult.Errors?.Select(e => e.ErrorMessage)
                 .ToList());
+            return null;
+        }
 
         var productCode = repository.QueryAsNoTracking<Entities.Product>()
             .FirstOrDefault(x => x.Code == request.Code);

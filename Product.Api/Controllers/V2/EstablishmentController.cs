@@ -31,10 +31,13 @@ public class EstablishmentController(IRepository repository, INotifierMessage no
             .FirstOrDefault(x => x.Id == establishmentId);
 
         if (establishment is null)
+        {
             notifierMessage.Add(string.Format("{0} not found", "establishment"));
+            return CustomResponse(HttpStatusCode.BadRequest, null);
+        }
 
         return CustomResponse(HttpStatusCode.OK, establishment);
-    }
+    } 
 
     /// <summary>
     ///     Retorna todos os estabelecimentos

@@ -16,14 +16,13 @@ public class DeleteProduct(IRepository repository, INotifierMessage notifierMess
 
         if (product is null)
         {
-            notifierMessage.Add(Strings.Format(DomainValidationResource.NotFound, "Product"));
+            notifierMessage.Add(string.Format(DomainValidationResource.NotFound, "Product"));
             return false;
         }
 
         repository.Remove(product);
 
-        var isSuccess = await repository.CommitAsync(cancellationToken);
-        if (!isSuccess)
+        if (!await repository.CommitAsync(cancellationToken))
         {
             notifierMessage.Add(DomainValidationResource.ErrorOnDelete);
             return false;

@@ -1,5 +1,6 @@
 using System.Text;
 using Asp.Versioning.ApiExplorer;
+using IdentityServer4.AccessTokenValidation;
 using Microsoft.OpenApi.Models;
 
 namespace Product.Api.Configurations.Swagger;
@@ -16,9 +17,9 @@ public static class SwaggerConfig
                 });
 
         //add swagger json generation
-        services.AddSwaggerGen(options =>
+        services.AddSwaggerGen(c =>
         {
-            options.CustomSchemaIds(p => p.FullName);
+            c.CustomSchemaIds(p => p.FullName);
 
             var provider = services.BuildServiceProvider().GetRequiredService<IApiVersionDescriptionProvider>();
 
@@ -41,9 +42,15 @@ public static class SwaggerConfig
                     info.Description = apiInfoDescription.ToString();
                 }
 
-                options.SwaggerDoc(description.GroupName, info);
-                options.OperationFilter<DefaultHeaderFilter>();
+                c.SwaggerDoc(description.GroupName, info);
+                c.OperationFilter<DefaultHeaderFilter>();
+                
+                var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
             }
+
+            c.ParameterFilter<DefaultParametersFilter>();
 
             var securityDefinition = new OpenApiSecurityScheme
             {
@@ -52,12 +59,13 @@ public static class SwaggerConfig
                 In = ParameterLocation.Header,
                 Type = SecuritySchemeType.ApiKey
             };
+            c.AddSecurityDefinition(IdentityServerAuthenticationDefaults.AuthenticationScheme, securityDefinition);
 
             var openApiSecurityScheme = new OpenApiSecurityScheme
             {
                 Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
             };
-            options.AddSecurityRequirement(new OpenApiSecurityRequirement {
+            c.AddSecurityRequirement(new OpenApiSecurityRequirement {
             {
                 openApiSecurityScheme,
                 Array.Empty<string>()
